@@ -1,0 +1,20 @@
+{
+    "presets": ["env","react","es2015","stage-0","es2017"],
+    "plugins": [
+        [
+          "import", {
+            "libraryName": "antd",
+            "libraryDirectory": "es"
+          }
+        ],
+        [
+          "transform-runtime", {
+            "helpers": false,
+            "polyfill": true,
+            "regenerator": true,
+            "moduleName": "babel-runtime"
+          }
+       ],
+       "transform-object-rest-spread"
+      ]
+}
