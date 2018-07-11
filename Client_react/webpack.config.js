@@ -53,15 +53,15 @@ module.exports = (env,args)=>{
             inline :true
         },
         plugins:[
-                        new HtmlWebpackPlugin({
-                                hot: true,
-                                lazy: true,
-                                inject:'body',
-                                       hash:true,
-                                template: path.resolve(__dirname,"src/index.html")
-                       }),
+            new HtmlWebpackPlugin({
+                    hot: true,
+                    lazy: true,
+                    inject:'body',
+                            hash:true,
+                    template: path.resolve(__dirname,"src/index.html")
+            }),
             new webpack.HotModuleReplacementPlugin(),
-                        new webpack.optimize.AggressiveMergingPlugin()
+            new webpack.optimize.AggressiveMergingPlugin()
          ]   
     }
 }
