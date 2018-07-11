@@ -7,24 +7,24 @@ import {HashRouter, Route} from 'react-router-dom';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 
-import todoApp from './redux/reducer/index.js'
+// import todoApp from './redux/reducer/index.js'
 
 import 'antd/dist/antd.css';
 
 
-let store = createStore(todoApp)
+// let store = createStore(todoApp)
 
 export default class Root extends React.Component{
   render() { 
       return (
-        <Provider store={store}>
+        // <Provider store={store}>
           <HashRouter>
             <div>
-              <Route path="/"  exact component={Index} />
+              <Route path="/"  component={Index} />
               <Route path="/test"  component={ComponentList} /> 
             </div>
           </HashRouter>
-        </Provider>
+        // </Provider>
       )
   }
 }
