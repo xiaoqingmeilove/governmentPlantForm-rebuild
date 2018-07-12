@@ -2,10 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// import path from 'path';
-// import webpack from 'webpack';
-// import HtmlWebpackPlugin from 'html-webpack-plugin';
-
 module.exports = (env,args)=>{
     return {
         context:path.resolve(__dirname,'src'),
@@ -24,7 +20,10 @@ module.exports = (env,args)=>{
                 use:[{
                     loader:'babel-loader',
                     options:{
-                        presets:['es2015','react','stage-0']
+                        presets:['es2015','react','stage-0'],
+                        plugins:[
+                            ["import",{"libraryName": "antd","style": "css"}]
+                        ]
                     }
                 }]
             },{
@@ -33,6 +32,11 @@ module.exports = (env,args)=>{
                     loader:'style-loader'
                 },{
                     loader:'css-loader'
+                }]
+            },{
+                test:/\.less$/,
+                use:[{
+                    loader:'less-loader'
                 }]
             },{
                 test:/\.(jpg|gif|png)/,
