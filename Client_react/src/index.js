@@ -1,10 +1,28 @@
 import React from  'react';
 import ReactDOM from 'react-dom';
 import { HashRouter, Route } from 'react-router-dom';
+import Loadable from 'react-loadable';
 
-import LoginPage from './page/login/index.js'
-import MainPage from './page/main/index.js'
+const MyLoadingComponent = ({ isLoading, error }) => {
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+    else if (error) {
+        return <div>Sorry, there was a problem loading the page.</div>;
+    }
+    else {
+        return null;
+    }
+};
 
+const LoginPage = Loadable({
+    loader: () => import('./page/login/index.js'),
+    loading: MyLoadingComponent
+});
+const MainPage = Loadable({
+    loader: () => import('./page/main/index.js'),
+    loading: MyLoadingComponent
+});
 
 const App = ()=>{
     return (
