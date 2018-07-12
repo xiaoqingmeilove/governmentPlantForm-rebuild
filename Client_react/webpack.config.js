@@ -2,14 +2,18 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+// import path from 'path';
+// import webpack from 'webpack';
+// import HtmlWebpackPlugin from 'html-webpack-plugin';
+
 module.exports = (env,args)=>{
     return {
         context:path.resolve(__dirname,'src'),
         entry:()=>path.resolve(__dirname,'src/index.js'),
         output:{
             filename:'bundle.[hash].js',
-            path:path.resolve(__dirname,'src/dist'),
-            publicPath:'/'
+            path:path.resolve(__dirname,'dist'),
+            publicPath:''
         },
         module:{
             rules:[{
