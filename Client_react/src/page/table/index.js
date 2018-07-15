@@ -5,7 +5,7 @@ class Index extends React.Component {
   render() {
     return (
       <div>
-        <h3>这里开始主要界面</h3>
+        <h1>这里是表格</h1>
       </div>
     );
   }

@@ -1,11 +1,13 @@
 import React from 'react';
+import { Route,Switch } from 'react-router-dom';
 
 class Index extends React.Component {
   
   render() {
+    console.log("cccccc",this)
     return (
       <div>
-        <h3>这里开始主要界面</h3>
+        <h1>-----这里是一个空页面-----</h1>
       </div>
     );
   }

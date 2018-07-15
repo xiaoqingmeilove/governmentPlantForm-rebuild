@@ -6,7 +6,6 @@ const Step = Steps.Step;
 class NormalLoginForm extends React.Component {
   
   render() {
-   
     return (
       <div>
         <Steps current={1}>
