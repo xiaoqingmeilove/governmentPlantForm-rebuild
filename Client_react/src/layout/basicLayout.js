@@ -38,7 +38,6 @@ class Index extends React.Component {
     }
     inside(children)
     return result
-    
   }
   
   render() {
