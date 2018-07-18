@@ -1,15 +1,10 @@
-const todos = (state = {notice:"初始化成功"}, action) => {
-    switch (action.type) {
-      case 'ADD_TODO':
-        return {
-            ...state,
-            ...action.payload
-        }
-      case 'TOGGLE_TODO':
-        return {...state,msg:"这是一条测试用数据"}
-      default:
-        return state
-    }
+const todos = (state = 0, action) => {
+  switch (action.type) {
+    case 'Done':
+      return state + action.payload;
+    default:
+      return state;
   }
-  
-  export default todos
+}
+
+export default todos

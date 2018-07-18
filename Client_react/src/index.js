@@ -1,12 +1,22 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux'
 import ReactDOM from 'react-dom';
+
 import { HashRouter, Route } from 'react-router-dom';
 import Loadable from 'react-loadable';
+
+import { Provider } from 'react-redux';
+import { createStore,applyMiddleware } from 'redux'
+import createSagaMiddleware from 'redux-saga'
+
+
 import routeConfig from "./routeConfig.js"
+
 import rootReducer from './redux/reducer/index'
-const store = createStore(rootReducer)
+import { helloSaga } from './redux/saga/index'
+
+const sagaMiddleware=createSagaMiddleware()
+const store = createStore(rootReducer,applyMiddleware(sagaMiddleware))
+sagaMiddleware.run(helloSaga);
 
 const MyLoadingComponent = ({ isLoading, error }) => {
     if (isLoading) {
