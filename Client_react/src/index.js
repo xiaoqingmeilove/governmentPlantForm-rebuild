@@ -1,9 +1,12 @@
-import React from  'react';
-import {Provider}from 'react-redux';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux'
 import ReactDOM from 'react-dom';
 import { HashRouter, Route } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import routeConfig from "./routeConfig.js"
+import rootReducer from './redux/reducer/index'
+const store = createStore(rootReducer)
 
 const MyLoadingComponent = ({ isLoading, error }) => {
     if (isLoading) {
@@ -17,28 +20,30 @@ const MyLoadingComponent = ({ isLoading, error }) => {
     }
 };
 
-const App = ()=>{ 
+const App = () => {
     return (
-        <HashRouter>
-            <div>
-            {
-                function(){
-                    return routeConfig.map(item=>{
-                        let Temp =  Loadable({
-                                        loader: () => import(`./layout/${item.layoutPath}`),
-                                        loading: MyLoadingComponent
-                                    });
-                        return  <Route
+        <Provider store={store}>
+            <HashRouter>
+                <div>
+                    {
+                        function () {
+                            return routeConfig.map(item => {
+                                let Temp = Loadable({
+                                    loader: () => import(`./layout/${item.layoutPath}`),
+                                    loading: MyLoadingComponent
+                                });
+                                return <Route
                                     path={item.path}
                                     key={item.path}
-                                    render={props => <Temp {...props} children={item.children}/>}
+                                    render={props => <Temp {...props} children={item.children} />}
                                 />
-                    })
-                }()
-            }
-            </div>
-        </HashRouter>
-   )
+                            })
+                        }()
+                    }
+                </div>
+            </HashRouter>
+        </Provider>
+    )
 };
 
-ReactDOM.render(<App/>,document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));

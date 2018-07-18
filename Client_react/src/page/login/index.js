@@ -1,11 +1,12 @@
 import React from 'react';
 import { Input, Button, Steps, Radio } from 'antd';
+import { connect } from 'react-redux'
 
 const Step = Steps.Step;
 
 class NormalLoginForm extends React.Component {
-  
   render() {
+    console.log("ffssaa",this.props)
     return (
       <div>
         <Steps current={1}>
@@ -19,5 +20,12 @@ class NormalLoginForm extends React.Component {
     );
   }
 }
-;
-export default NormalLoginForm;
+
+const mapStateToProps = state => {
+  console.log("dddddd",state)
+  return {
+    todos: state
+  }
+}
+
+export default connect(mapStateToProps)(NormalLoginForm);
