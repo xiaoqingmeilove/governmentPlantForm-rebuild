@@ -2,7 +2,7 @@ export default [
     {
         name:"登录",
         path:"/login",
-        layoutPath:"blankLayout",
+        componentPath:"loginLogic",
     },{
         name:"主界面",
         path:"/main",

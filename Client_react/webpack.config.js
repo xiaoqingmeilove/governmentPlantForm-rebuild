@@ -38,11 +38,28 @@ module.exports = (env, args) => {
                 }]
             }, {
                 test: /\.css$/,
-                use: [{
-                    loader: 'style-loader'
-                }, {
-                    loader: 'css-loader'
-                }]
+                exclude:[/node_modules/],
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            localIdentName: '[hash:base64:6]'
+                        }
+                    }
+                ]
+            }, {
+                test: /\.css$/,
+                exclude:[/src/],
+                use: [
+                    {
+                        loader: 'style-loader'
+                    },
+                    {
+                        loader: 'css-loader'
+                    },
+                ]
             }, {
                 test: /\.less$/,
                 use: [{

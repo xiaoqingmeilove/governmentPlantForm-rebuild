@@ -1,4 +1,4 @@
-import {put} from 'redux-saga/effects'
+import {put,select} from 'redux-saga/effects'
 
 export function* AddAsync() {
     yield new Promise(function (resolve) {
@@ -6,6 +6,8 @@ export function* AddAsync() {
             resolve()
         }, 1000)
     })
+    const state= yield select()
+    console.log("整个state",state)
     yield put({type: 'Done', payload: 1})
 }
 

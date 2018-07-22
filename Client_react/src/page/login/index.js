@@ -1,31 +1,57 @@
 import React from 'react';
-import { Input, Button, Steps, Radio } from 'antd';
-import { connect } from 'react-redux'
+import { Input, Button, Form, Icon, Checkbox } from 'antd';
+import styles from './index.css';
+const FormItem = Form.Item;
 
-const Step = Steps.Step;
 
 class NormalLoginForm extends React.Component {
   render() {
-    console.log("ffssaa",this.props)
+    console.log("pppp",this)
+    const { getFieldDecorator } = this.props.form;
     return (
-      <div>
-        <Steps current={1}>
-            <Step title="Finished" description="This is a description." />
-            <Step title="In Progress" description="This is a description." />
-            <Step title="Waiting" description="This is a description." />
-        </Steps>
-        <Radio>Radio</Radio>
-        <h1>登录界面</h1>
+      <div style={{ textAlign: "center" }}>
+        <div className={styles.logoDiv}>
+          <span>这里放置LOGO</span>
+        </div>
+        <div>
+          
+          <Form>
+            <FormItem>
+              {getFieldDecorator('userName', {
+                rules: [{ required: true, message: 'Please input your username!' }],
+              })(
+                <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+              )}
+            </FormItem>
+            <FormItem>
+              {getFieldDecorator('password', {
+                rules: [{ required: true, message: 'Please input your Password!' }],
+              })(
+                <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+              )}
+            </FormItem>
+            <FormItem>
+              {getFieldDecorator('remember', {
+                valuePropName: 'checked',
+                initialValue: true,
+              })(
+                <Checkbox>Remember me</Checkbox>
+              )}
+              <a  href="">Forgot password</a>
+              <Button type="primary" htmlType="submit" >
+                Log in
+              </Button>
+              Or <a href="">register now!</a>
+            </FormItem>
+          </Form>
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  console.log("dddddd",state)
-  return {
-    todos: state
-  }
-}
 
-export default connect(mapStateToProps)(NormalLoginForm);
+
+const WrappedNormalLoginForm = Form.create()(NormalLoginForm);
+
+export default WrappedNormalLoginForm;

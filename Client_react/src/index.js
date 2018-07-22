@@ -10,6 +10,7 @@ import createSagaMiddleware from 'redux-saga'
 
 
 import routeConfig from "./routeConfig.js"
+import 'antd/dist/antd.css';
 
 import rootReducer from './redux/reducer/index'
 import { helloSaga } from './redux/saga/index'
@@ -38,15 +39,39 @@ const App = () => {
                     {
                         function () {
                             return routeConfig.map(item => {
-                                let Temp = Loadable({
-                                    loader: () => import(`./layout/${item.layoutPath}`),
-                                    loading: MyLoadingComponent
-                                });
-                                return <Route
-                                    path={item.path}
-                                    key={item.path}
-                                    render={props => <Temp {...props} children={item.children} />}
-                                />
+                                if(item.layoutPath){
+                                    let Temp = Loadable({
+                                        loader: () => import(`./layout/${item.layoutPath}`),
+                                        loading: MyLoadingComponent
+                                    });
+                                    return <Route
+                                        path={item.path}
+                                        key={item.path}
+                                        render={props => <Temp {...props} children={item.children} />}
+                                    />
+                                }else if(item.componentPath&&item.componentPath.indexOf("/")!=-1){
+                                    let Temp = Loadable({
+                                        loader: () => import(`./page/${item.componentPath}`),
+                                        loading: MyLoadingComponent
+                                    });
+                                    return <Route
+                                        path={item.path}
+                                        key={item.path}
+                                        component={Temp}
+                                        exact={true}
+                                    />
+                                }else{
+                                    let Temp = Loadable({
+                                        loader: () => import(`./logicComponent/${item.componentPath}`),
+                                        loading: MyLoadingComponent
+                                    });
+                                    return <Route
+                                        path={item.path}
+                                        key={item.path}
+                                        component={Temp}
+                                        exact={true}
+                                    />
+                                }
                             })
                         }()
                     }
