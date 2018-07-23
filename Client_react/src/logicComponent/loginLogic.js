@@ -20,8 +20,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onChangeAdd: () => {
-            dispatch({ type: 'ADD', payload: 1 });
+        onLogin: (form) => {
+            form.validateFields((err, values) => {
+                if (!err) {
+                    dispatch({ type: 'ACTION/login', payload: {user:"mmm"} });
+                }else{
+                    return
+                }
+              });
         },
     }
 }

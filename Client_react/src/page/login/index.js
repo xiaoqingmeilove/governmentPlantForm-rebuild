@@ -13,8 +13,7 @@ class NormalLoginForm extends React.Component {
         <div className={styles.logoDiv}>
           <span>这里放置LOGO</span>
         </div>
-        <div>
-          
+        <div className={styles.mainDiv}>
           <Form>
             <FormItem>
               {getFieldDecorator('userName', {
@@ -30,21 +29,11 @@ class NormalLoginForm extends React.Component {
                 <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
               )}
             </FormItem>
-            <FormItem>
-              {getFieldDecorator('remember', {
-                valuePropName: 'checked',
-                initialValue: true,
-              })(
-                <Checkbox>Remember me</Checkbox>
-              )}
-              <a  href="">Forgot password</a>
-              <Button type="primary" htmlType="submit" >
-                Log in
-              </Button>
-              Or <a href="">register now!</a>
-            </FormItem>
           </Form>
         </div>
+        <Button type="primary" htmlType="submit" onClick={()=>this.props.onLogin(this.props.form)}>
+                登录
+        </Button>
       </div>
     );
   }

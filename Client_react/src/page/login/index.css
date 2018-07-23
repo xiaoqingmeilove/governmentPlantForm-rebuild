@@ -4,3 +4,9 @@
    font-size: 40px;
    margin-top: 10%
 }
+
+.mainDiv{
+    margin-top: 50px;
+    width:50%;
+    transform: translate(50%, 0);
+ }
