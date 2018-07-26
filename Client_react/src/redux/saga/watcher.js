@@ -1,18 +1,23 @@
 import {takeEvery} from 'redux-saga'
+import {put,select} from 'redux-saga/effects'
 import * as workers from './worker.js'
 
 export function* watchAsync() {
     yield* takeEvery('*', function* logger(action) {
-        console.log("dssss",action,workers)
+        if(action.type == 'loading/loading'){
+            return
+        }
         if(action.type.indexOf("ACTION")!=-1){
             const type = action.type.split("/")[1]
+            yield put({type: 'loading/loading', payload:{loading:true} })
             yield workers[type](action.payload)
-        }else if(action.type.indexOf("WORKER")!=-1){
-
+        }
+        else if(action.type.indexOf("WORKER")!=-1){
+            const state= yield select()
+            if(state.todos.loading){
+                yield put({type: 'loading/loading', payload:{loading:false} })
+            }
+            return
         }
     })
 }
-
-// export function* watchDecrementAsync() {
-//     yield* takeEvery('SUB', SubAsync)
-// }

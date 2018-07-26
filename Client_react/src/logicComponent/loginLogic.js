@@ -12,9 +12,8 @@ const makeProps = (Target) => (props) => {
 }
 
 const mapStateToProps = state => {
-    console.log("dddddd", state)
     return {
-        todos: state
+        login: {...state.todos}
     }
 }
 
@@ -22,8 +21,9 @@ const mapDispatchToProps = dispatch => {
     return {
         onLogin: (form) => {
             form.validateFields((err, values) => {
+                console.log("values",values)
                 if (!err) {
-                    dispatch({ type: 'ACTION/login', payload: {user:"mmm"} });
+                    dispatch({ type: 'ACTION/login', payload: values });
                 }else{
                     return
                 }

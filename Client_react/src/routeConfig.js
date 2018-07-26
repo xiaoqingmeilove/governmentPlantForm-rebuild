@@ -11,14 +11,7 @@ export default [
             {
                 name:"内部路由1",
                 path:"/main/inside1",
-                componentPath:"login/index",
-                children:[
-                    {
-                        name:"内部子路由",
-                        path:"/main/inside1/small",
-                        componentPath:"table/index",
-                    }
-                ]
+                componentPath:"main/index",
             },
             {
                 name:"内部路由2",
