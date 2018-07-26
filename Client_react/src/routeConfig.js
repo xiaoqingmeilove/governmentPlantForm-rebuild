@@ -9,27 +9,37 @@ export default [
         layoutPath:"basicLayout",
         children:[
             {
-                name:"内部路由1",
-                path:"/main/inside1",
+                name:"用户管理",
+                path:"/main/user",
                 componentPath:"main/index",
             },
             {
-                name:"内部路由2",
-                path:"/main/inside2",
+                name:"地区管理",
+                path:"/main/region",
                 componentPath:"main/index",
-                children:[
-                    {
-                        name:"内部子路由",
-                        path:"/main/inside2/small",
-                        componentPath:"table/index",
-                    },
-                    {
-                        name:"内部子路由",
-                        path:"/main/inside2/big",
-                        componentPath:"table/index",
-                    }
-                ]
-            }
+            },
+            {
+                name:"电梯信息维护",
+                path:"/main/onlineLift",
+                componentPath:"main/index",
+            },
+            {
+                name:"电梯故障处理信息",
+                path:"/main/faultDeal",
+                componentPath:"main/index",
+            },
+            {
+                name:"电梯批量登记",
+                path:"/main/registration",
+                componentPath:"main/index",
+            },
+            {
+                name:"电梯维护信息",
+                path:"/main/maintenance",
+                componentPath:"main/index",
+            },
         ]
     }
 ]
+
+

@@ -1,10 +1,11 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import Loadable from 'react-loadable';
 import styles from './bacsicLayout.css';
 
 const { Header, Content, Footer, Sider } = Layout;
+const SubMenu = Menu.SubMenu;
 
 const MyLoadingComponent = ({ isLoading, error }) => {
   if (isLoading) {
@@ -32,6 +33,19 @@ class Index extends React.Component {
     });
   }
 
+  makeBread = (children) => {
+    var breadcrumbNameMap = {}
+    function inside(children) {
+      for (let i = 0; i < children.length; i++) {
+        breadcrumbNameMap[children[i].path] = children[i].name
+        if (children[i].children) {
+          inside(children[i].children)
+        }
+      }
+    }
+    inside(children)
+    return breadcrumbNameMap
+  }
 
   makeRoute = (children) => {
     var result = []
@@ -46,7 +60,7 @@ class Index extends React.Component {
           path={children[i].path}
           key={children[i].path}
           component={Temp}
-          exact={true}
+          exact
         />)
         if (children[i].children) {
           inside(children[i].children)
@@ -57,44 +71,62 @@ class Index extends React.Component {
     return result
   }
 
-
+  makeMenu = (menuArr) => {
+    return menuArr.map(item => {
+      if (item.children) {
+        return <SubMenu key={item.path} title={<span><Icon type="mail" /><span>{item.name}</span></span>}>
+          {this.makeMenu(item.children)}
+        </SubMenu>
+      }
+      return <Menu.Item key={item.path}>
+        <Icon type="user" />
+        <span>{item.name}</span>
+      </Menu.Item>
+    })
+  }
 
   render() {
     const children = this.props.children
+    const pathSnippets = this.props.location.pathname.split('/').filter(i => i);
+    const extraBreadcrumbItems = pathSnippets.map((_, index) => {
+      var breadcrumbNameMap = this.makeBread(children)
+      const url = `/${pathSnippets.slice(0, index + 1).join('/')}`;
+      if(breadcrumbNameMap[url]){
+        return (
+          <Breadcrumb.Item key={url}>
+            <Link to={url}>
+              {breadcrumbNameMap[url]}
+            </Link>
+          </Breadcrumb.Item>
+        );
+      }else{
+        return null
+      }
+      
+    });
+    const breadcrumbItems = [(
+      <Breadcrumb.Item key="home">
+        <span>首页</span>
+      </Breadcrumb.Item>
+    )].concat(extraBreadcrumbItems);
+    console.log("vvvv", this.props,pathSnippets)
     return (
       <Layout className={styles.mainDiv}>
         <Sider
           breakpoint="lg"
           collapsedWidth="0"
-          onBreakpoint={(broken) => { console.log(broken); }}
           onCollapse={(collapsed, type) => { console.log(collapsed, type); }}
         >
           <div className="logo" >这里放logo</div>
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
-            <Menu.Item key="1">
-              <Icon type="user" />
-              <span className="nav-text">用户管理</span>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Icon type="video-camera" />
-              <span className="nav-text">地区管理</span>
-            </Menu.Item>
-            <Menu.Item key="3">
-              <Icon type="upload" />
-              <span className="nav-text">电梯在线管理</span>
-            </Menu.Item>
-            <Menu.Item key="4">
-              <Icon type="user" />
-              <span className="nav-text">电梯批量登记</span>
-            </Menu.Item>
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={[]}>
+            {this.makeMenu(children)}
           </Menu>
         </Sider>
         <Layout>
           <Header style={{ background: '#fff', padding: 0 }} />
           <Content style={{ margin: '0 16px' }}>
             <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>Bill</Breadcrumb.Item>
+              {breadcrumbItems}
             </Breadcrumb>
             <div style={{ padding: 24, background: '#fff', minHeight: 800 }}>
               <Switch>

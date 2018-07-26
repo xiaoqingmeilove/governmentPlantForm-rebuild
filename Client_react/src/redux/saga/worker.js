@@ -3,6 +3,6 @@ import createHistory from 'history/createHashHistory'
 const history = createHistory()
 
 export function* login(payload) {
-    history.replace('/main/inside1')
+    history.replace('/main/user')
     yield put({type: 'WORKER/Done', payload })
 }
