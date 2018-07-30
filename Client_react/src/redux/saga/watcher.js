@@ -1,7 +1,8 @@
 import {takeEvery} from 'redux-saga'
 import {put,select} from 'redux-saga/effects'
+import createHistory from 'history/createHashHistory'
 import * as workers from './worker.js'
-
+const history = createHistory()
 export function* watchAsync() {
     yield* takeEvery('*', function* logger(action) {
         if(action.type == 'loading/loading'){

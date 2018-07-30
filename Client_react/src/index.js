@@ -17,6 +17,10 @@ import { helloSaga } from './redux/saga/index'
 
 const sagaMiddleware=createSagaMiddleware()
 const store = createStore(rootReducer,applyMiddleware(sagaMiddleware))
+let unsubscribe = store.subscribe(() =>
+  console.log(55555555,store.getState())
+);
+
 sagaMiddleware.run(helloSaga);
 
 const MyLoadingComponent = ({ isLoading, error }) => {
