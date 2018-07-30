@@ -1,21 +1,25 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <!-- <img src="./assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <login></login>
+    <!-- <login></login> -->
+    <!-- <blank-page></blank-page> -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import login from './views/login/index.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+// import login from './views/login/index.vue'
+// import blankPage from './views/layout/blankPage.vue'
 
 export default {
-  name: 'app',
-  components: {
-    HelloWorld,
-    login
-  }
+  name: 'app'
+  // ,
+  // components: {
+  //   login,
+  //   blankPage
+  // }
 }
 </script>
 
@@ -26,6 +30,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 60px; */
 }
 </style>
