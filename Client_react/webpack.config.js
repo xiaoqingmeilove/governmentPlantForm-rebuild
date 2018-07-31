@@ -32,13 +32,22 @@ module.exports = (env, args) => {
                                     "regenerator": true,
                                     "moduleName": "babel-runtime"
                                 }
+                            ],
+                            [
+                                "transform-decorators-legacy",
+                                {
+                                    "compilerOptions": {
+                                        "experimentalDecorators": true,
+                                        "emitDecoratorMetadata": true
+                                    }
+                                }
                             ]
                         ]
                     }
                 }]
             }, {
                 test: /\.css$/,
-                exclude:[/node_modules/],
+                exclude: [/node_modules/],
                 use: [
                     'style-loader',
                     {
@@ -51,7 +60,7 @@ module.exports = (env, args) => {
                 ]
             }, {
                 test: /\.css$/,
-                exclude:[/src/],
+                exclude: [/src/],
                 use: [
                     {
                         loader: 'style-loader'

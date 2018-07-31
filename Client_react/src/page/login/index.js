@@ -6,7 +6,6 @@ const FormItem = Form.Item;
 
 class NormalLoginForm extends React.Component {
   render() {
-    console.log("pppp",this)
     const { getFieldDecorator } = this.props.form;
     return (
       <div style={{ textAlign: "center" }}>

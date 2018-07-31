@@ -4,24 +4,16 @@ import ReactDOM from 'react-dom';
 import { HashRouter, Route } from 'react-router-dom';
 import Loadable from 'react-loadable';
 
-import { Provider } from 'react-redux';
-import { createStore,applyMiddleware } from 'redux'
-import createSagaMiddleware from 'redux-saga'
+
+import { observable, computed, autorun } from "mobx";
+import { Provider } from 'mobx-react';
+import Store from './mobx/store/storeIndex'
 
 
 import routeConfig from "./routeConfig.js"
 import 'antd/dist/antd.css';
 
-import rootReducer from './redux/reducer/index'
-import { helloSaga } from './redux/saga/index'
 
-const sagaMiddleware=createSagaMiddleware()
-const store = createStore(rootReducer,applyMiddleware(sagaMiddleware))
-let unsubscribe = store.subscribe(() =>
-  console.log(55555555,store.getState())
-);
-
-sagaMiddleware.run(helloSaga);
 
 const MyLoadingComponent = ({ isLoading, error }) => {
     if (isLoading) {
@@ -37,7 +29,7 @@ const MyLoadingComponent = ({ isLoading, error }) => {
 
 const App = () => {
     return (
-        <Provider store={store}>
+        <Provider {...Store}>
             <HashRouter>
                 <div>
                     {
@@ -81,7 +73,7 @@ const App = () => {
                     }
                 </div>
             </HashRouter>
-        </Provider>
+            </Provider>
     )
 };
 

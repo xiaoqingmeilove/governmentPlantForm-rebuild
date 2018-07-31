@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux'
 import Login from '../page/login/index'
 
 const makeProps = (Target) => (props) => {
@@ -11,28 +10,7 @@ const makeProps = (Target) => (props) => {
     return <Target {...props} />
 }
 
-const mapStateToProps = state => {
-    return {
-        login: {...state.todos}
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        onLogin: (form) => {
-            form.validateFields((err, values) => {
-                console.log("values",values)
-                if (!err) {
-                    dispatch({ type: 'ACTION/login', payload: values });
-                }else{
-                    return
-                }
-              });
-        },
-    }
-}
-
-const Result = makeProps(connect(mapStateToProps, mapDispatchToProps)(Login));
+const Result = makeProps(Login);
 
 export default Result
 
