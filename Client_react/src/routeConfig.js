@@ -2,7 +2,7 @@ export default [
     {
         name:"登录",
         path:"/login",
-        componentPath:"loginLogic",
+        componentPath:"login/index",
     },{
         name:"主界面",
         path:"/main",
@@ -10,13 +10,25 @@ export default [
         children:[
             {
                 name:"用户管理",
-                path:"/main/user",
+                path:"/main/",
                 componentPath:"main/index",
-            },
-            {
-                name:"地区管理",
-                path:"/main/region",
-                componentPath:"main/index",
+                children:[
+                    {
+                        name:"用户管理",
+                        path:"/main/user",
+                        componentPath:"main/index",
+                    },
+                    {
+                        name:"公司管理",
+                        path:"/main/user",
+                        componentPath:"main/index",
+                    },
+                    {
+                        name:"地区管理",
+                        path:"/main/city",
+                        componentPath:"city/index",
+                    }
+                ]
             },
             {
                 name:"电梯信息维护",

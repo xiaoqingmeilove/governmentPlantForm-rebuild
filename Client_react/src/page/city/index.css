@@ -1,0 +1,22 @@
+.cityName{
+    font-size: 20px;
+    font-weight: bold
+}
+
+.cityNameList{
+    font-size: 17px;
+    display: inline-block
+}
+
+.cityNameList :global(.ant-tag){
+    font-size: 15px
+}
+
+.formName{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.formList{
+    margin-top: 30px;
+}

@@ -1,7 +1,7 @@
 import Student from  './student';
-import Table from  './table';
+import City from  './city';
 
 export default {
     Student:new Student(),
-    Table:new Table(),
+    City:new City(),
 }

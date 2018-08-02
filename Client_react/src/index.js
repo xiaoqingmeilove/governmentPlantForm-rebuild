@@ -57,16 +57,7 @@ const App = () => {
                                         exact={true}
                                     />
                                 }else{
-                                    let Temp = Loadable({
-                                        loader: () => import(`./logicComponent/${item.componentPath}`),
-                                        loading: MyLoadingComponent
-                                    });
-                                    return <Route
-                                        path={item.path}
-                                        key={item.path}
-                                        component={Temp}
-                                        exact={true}
-                                    />
+                                   return
                                 }
                             })
                         }()

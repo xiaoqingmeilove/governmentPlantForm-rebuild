@@ -1,12 +1,14 @@
 import React from 'react';
 import { Input, Button, Form, Icon, Checkbox } from 'antd';
 import styles from './index.css';
+
 const FormItem = Form.Item;
 
 
 class NormalLoginForm extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
+
     return (
       <div style={{ textAlign: "center" }}>
         <div className={styles.logoDiv}>
