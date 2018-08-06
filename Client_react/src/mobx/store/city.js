@@ -10,23 +10,27 @@ export default class NewStore {
         this.cityNamelist_select='苏州';
         this.modelVisible=false;
     }
-    @action.bound changeAll(newValue){
+    @action.bound changeAll(newValue){ //注册action ,action里面可以改变mobx注册的数据,从而改变store里的数据
         for(let key in newValue){
-            if(this[key]){
+            if(this.hasOwnProperty(key)){
                 this[key] = newValue[key]
             }else{
                 continue
             }
         }
     }
-    @action.bound changeSelect(tag,check){  //注册action ,action里面可以改变mobx注册的数据,从而改变store里的数据
+    @action.bound changeSelect(tag,check){  
         if(check){
             this.cityNamelist_select = tag
         }else{
             this.cityNamelist_select = ""
         }
-        // console.log(tag,check,this.cityNamelist_select)
-        // this.cityNamelist = ['苏州','无锡','宁波','湖州']
-        
+    }
+    @action.bound changeList(value,type){  
+        if(type == 'add'){
+            this.cityNamelist.push(value)
+        }else{
+            this.cityNamelist
+        }
     }
 }

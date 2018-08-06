@@ -20,8 +20,8 @@ export default [
                     },
                     {
                         name:"公司管理",
-                        path:"/main/user",
-                        componentPath:"main/index",
+                        path:"/main/company",
+                        componentPath:"company/index",
                     },
                     {
                         name:"地区管理",

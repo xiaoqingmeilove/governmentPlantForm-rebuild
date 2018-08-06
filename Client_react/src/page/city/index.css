@@ -3,13 +3,14 @@
     font-weight: bold
 }
 
+.cityNameInput{
+    width: 400px;
+    display: inline-block;
+}
+
 .cityNameList{
     font-size: 17px;
     display: inline-block
-}
-
-.cityNameList :global(.ant-tag){
-    font-size: 15px
 }
 
 .formName{
@@ -19,4 +20,10 @@
 
 .formList{
     margin-top: 30px;
+}
+
+/* 以下覆盖原来样式 */
+
+.cityNameList :global(.ant-tag){
+    font-size: 15px
 }

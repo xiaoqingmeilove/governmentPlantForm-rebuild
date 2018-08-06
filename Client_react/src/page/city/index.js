@@ -21,24 +21,35 @@ const formItemLayout = {
 @observer
 class Index extends React.Component {
     render() {
-        console.log("hhhhhh", this)
         const columns = [{
             title: '变量名称',
             dataIndex: 'keyName',
             key: 'keyName',
-          }, {
+        }, {
             title: '变量详细信息',
             dataIndex: 'keyValue',
             key: 'keyValue',
-          }, {
+        }, {
             title: '注释',
             dataIndex: 'description',
             key: 'description',
-          }];
+        }];
         const { getFieldDecorator } = this.props.form;
         return (
             <div>
                 <div>
+                    <div style={{ marginBottom: "20px" }}>
+                        <span className={styles.cityName}>新增城市：</span>
+                        <Input className={styles.cityNameInput} id="cityInput"></Input>
+                        <Button
+                            style={{ marginLeft: "20px" }}
+                            onClick={() => {
+                                this.props.City.changeList(document.getElementById("cityInput").value, "add")
+                            }}
+                        >
+                            确定
+                        </Button>
+                    </div>
                     <span className={styles.cityName}>现有城市：</span>
                     <div className={styles.cityNameList}>
                         {
@@ -57,6 +68,23 @@ class Index extends React.Component {
                     </div>
                     <div className={styles.formList}>
                         <span className={styles.formName}>详细信息：</span>
+                        <Button
+                            style={{ marginLeft: "20px" }}
+                            onClick={() => {
+                                this.props.City.changeList(document.getElementById("cityInput").value, "add")
+                            }}
+                        >
+                            确定修改
+                        </Button>
+                        <Button
+                            type='danger'
+                            style={{ marginLeft: "20px" }}
+                            onClick={() => {
+                                this.props.City.changeList(document.getElementById("cityInput").value, "add")
+                            }}
+                        >
+                            删除城市
+                        </Button>
                         <Form
 
                         >
@@ -87,7 +115,7 @@ class Index extends React.Component {
                                         {getFieldDecorator("broadcastAddress", {
 
                                         })(
-                                            <Input placeholder="主平台收到 消息时向此地址广播" />
+                                            <Input placeholder="主平台收到消息时向此地址广播" />
                                         )}
                                     </FormItem>
                                 </Col>
@@ -102,9 +130,36 @@ class Index extends React.Component {
                                 </Col>
                             </Row>
                         </Form>
-                        <Button type="primary" style={{marginBottom:"20px",marginTop:"40px"}}>新增变量</Button>
+                        <Button
+                            type="primary"
+                            style={{ marginBottom: "20px", marginTop: "40px" }}
+                            onClick={() => {
+                                this.props.City.changeAll({
+                                    modelVisible: true
+                                })
+                            }}
+                        >
+                            新增变量
+                        </Button>
                         <Table dataSource={[]} columns={columns} />
-
+                        <Modal
+                            title="Basic Modal"
+                            visible={this.props.City.modelVisible}
+                            onOk={() => {
+                                this.props.City.changeAll({
+                                    modelVisible: false
+                                })
+                            }}
+                            onCancel={() => {
+                                this.props.City.changeAll({
+                                    modelVisible: false
+                                })
+                            }}
+                        >
+                            <p>Some contents...</p>
+                            <p>Some contents...</p>
+                            <p>Some contents...</p>
+                        </Modal>
                     </div>
                 </div>
             </div>
