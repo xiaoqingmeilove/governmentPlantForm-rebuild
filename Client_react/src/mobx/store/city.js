@@ -1,5 +1,7 @@
 import { observer } from "mobx-react";
-import { observable, action, computed ,autorun} from "mobx";
+import { observable, action, computed ,autorun,configure} from "mobx";
+
+configure({ enforceActions: true });
 
 export default class NewStore {
     @observable cityNamelist;  //observable data 注册一个数据，这个数据将会成为一个可mobx监测的数据
