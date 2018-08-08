@@ -1,5 +1,6 @@
 var express = require('express');
 var cfenv = require('cfenv');
+var path = require('path');
 var appEnv = cfenv.getAppEnv();
 var port = appEnv.port;
 
@@ -24,6 +25,8 @@ server.use('/parse', ParseServer);
 
 // 把 Parse Dashboard 挂载在 /dashboard
 server.use('/dashboard', ParseDashboard);
+
+server.use('/', express.static(path.join(__dirname, 'dist')));  //读取静态文件
 
 
 server.get("/signUp",function(req,res){

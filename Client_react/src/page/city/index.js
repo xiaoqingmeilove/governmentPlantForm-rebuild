@@ -13,7 +13,7 @@ const formItemLayout = {
     },
     wrapperCol: {
         xs: { span: 24 },
-        sm: { span: 20 },
+        sm: { span: 18 },
     },
 };
 
@@ -89,7 +89,7 @@ class Index extends React.Component {
 
                         >
                             <Row gutter={24} style={{ marginTop: "15px" }}>
-                                <Col span={12} key={"city"} >
+                                <Col span={24} key={"city"} >
                                     <FormItem label={"城市"} {...formItemLayout}>
                                         {getFieldDecorator("city", {
                                             rules: [{
@@ -101,7 +101,7 @@ class Index extends React.Component {
                                         )}
                                     </FormItem>
                                 </Col>
-                                <Col span={12} key={"token"} >
+                                <Col span={24} key={"token"} >
                                     <FormItem label={"token"} {...formItemLayout}>
                                         {getFieldDecorator("token", {
 

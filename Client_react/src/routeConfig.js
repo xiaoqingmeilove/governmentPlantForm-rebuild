@@ -16,7 +16,7 @@ export default [
                     {
                         name:"用户管理",
                         path:"/main/user",
-                        componentPath:"main/index",
+                        componentPath:"user/index",
                     },
                     {
                         name:"公司管理",
