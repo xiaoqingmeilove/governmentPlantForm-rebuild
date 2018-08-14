@@ -5,11 +5,12 @@ import { observer, inject } from "mobx-react";
 import { observable, action, computed, autorun } from "mobx";
 
 const CheckableTag = Tag.CheckableTag;
+const { TextArea } = Input;
 const FormItem = Form.Item;
 const formItemLayout = {
     labelCol: {
         xs: { span: 24 },
-        sm: { span: 2 },
+        sm: { span: 4 },
     },
     wrapperCol: {
         xs: { span: 24 },
@@ -71,7 +72,7 @@ class Index extends React.Component {
                         <Button
                             style={{ marginLeft: "20px" }}
                             onClick={() => {
-                                this.props.City.changeList(document.getElementById("cityInput").value, "add")
+                                this.props.City.changeForm(this.props.form)
                             }}
                         >
                             确定修改
@@ -156,9 +157,43 @@ class Index extends React.Component {
                                 })
                             }}
                         >
-                            <p>Some contents...</p>
-                            <p>Some contents...</p>
-                            <p>Some contents...</p>
+                            <Form>
+                                <Row gutter={24} style={{ marginTop: "15px" }}>
+                                    <Col span={24} key={"keyName"} >
+                                        <FormItem label={"变量名称"} {...formItemLayout}>
+                                            {getFieldDecorator("keyName", {
+                                                rules: [{
+                                                    required: true,
+                                                    message: '请填写变量名称',
+                                                }],
+                                            })(
+                                                <Input placeholder="变量名称" />
+                                            )}
+                                        </FormItem>
+                                    </Col>
+                                    <Col span={24} key={"keyDescription"} >
+                                        <FormItem label={"注释"} {...formItemLayout}>
+                                            {getFieldDecorator("keyDescription", {
+                                                
+                                            })(
+                                                <Input placeholder="注释" />
+                                            )}
+                                        </FormItem>
+                                    </Col>
+                                    <Col span={24} key={"keyValue"} >
+                                        <FormItem label={"变量详情"} {...formItemLayout}>
+                                            {getFieldDecorator("keyValue", {
+                                                rules: [{
+                                                    required: true,
+                                                    message: '请填写变量详情',
+                                                }],
+                                            })(
+                                                <TextArea rows={4} placeholder="变量详情" />
+                                            )}
+                                        </FormItem>
+                                    </Col>
+                                </Row>
+                            </Form>
                         </Modal>
                     </div>
                 </div>

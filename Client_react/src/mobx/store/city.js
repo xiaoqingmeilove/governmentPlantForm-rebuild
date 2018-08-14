@@ -35,4 +35,7 @@ export default class NewStore {
             this.cityNamelist
         }
     }
+    @action.bound changeForm(props){  
+        console.log(props.getFieldsValue(),this)
+    }
 }

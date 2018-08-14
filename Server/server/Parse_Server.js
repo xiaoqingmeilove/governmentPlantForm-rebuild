@@ -7,9 +7,6 @@ var api = new ParseServer({
 "appName": "parseRole",
 "databaseURI":$config.databaseURI,
 "serverURL":$config.serverURL,
-"liveQuery": {
-    classNames: ['Book']
-  }
 });
 
 module.exports=api;

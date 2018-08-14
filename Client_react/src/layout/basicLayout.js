@@ -78,10 +78,14 @@ class Index extends React.Component {
           {this.makeMenu(item.children)}
         </SubMenu>
       }
-      return <Menu.Item key={item.path}>
-        <Icon type="user" />
-        <span>{item.name}</span>
+      return (
+      <Menu.Item key={item.path}>
+        <Link to={item.path}>
+          <Icon type="user" />
+          <span>{item.name}</span>
+        </Link>
       </Menu.Item>
+      )
     })
   }
 
@@ -109,7 +113,6 @@ class Index extends React.Component {
         <span>首页</span>
       </Breadcrumb.Item>
     )].concat(extraBreadcrumbItems);
-    console.log("vvvv", this.props,pathSnippets)
     return (
       <Layout className={styles.mainDiv}>
         <Sider
